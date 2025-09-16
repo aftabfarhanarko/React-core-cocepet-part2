@@ -4,7 +4,6 @@ import Boller from "./Boller";
 import Batsman from "./Batsman";
 import User from "./User";
 import Person from "./Person";
-import Shop from "./Shop";
 import "./App.css";
 
 // Api React Normal Vabe
@@ -36,31 +35,15 @@ function App() {
   };
 
   const personas = feacthPerson();
-  const myposts = myPost();
   return (
     <>
       <h2>React Core Concepet Part Tow</h2>
-      <Suspense fallback={<h2>Weating for display card.....</h2>}>
-       <Shop myPost={myPost}></Shop>
-
-      </Suspense>
-      
-       
-
-
-
-
-
-
-
       <Suspense fallback={<h2>Loding....🤺</h2>}>
         <User featchData={featchData}></User>
       </Suspense>
 
-      <Suspense fallback={<h1>I am Weating For my Firened Message...</h1>}>
-      <Person personas={personas}></Person>
-
-      </Suspense>
+      {/* <Suspense fallback={<h1>I am Weating For my Firened Message...</h1>}>
+      <Person personas={personas}></Person> </Suspense> */}
 
       <Batsman></Batsman>
       <Boller></Boller>
@@ -68,10 +51,12 @@ function App() {
 
       {/* Add Event Hendlear System 1 */}
       <button onClick={handlear}>Click ME</button>
+
       {/* Add Event Hendlear System 2 use arrow functions */}
       <button onClick={() => alert("Clicki OnClick Arrow Functions")}>
         Click Me2
       </button>
+      
       <button onClick={() => clientClick(10)}>My Button</button>
     </>
   );

@@ -4,6 +4,7 @@ import Boller from "./Boller";
 import Batsman from "./Batsman";
 import User from "./User";
 import Person from "./Person";
+import Todoes from "./Todoes";
 import "./App.css";
 
 // Api React Normal Vabe
@@ -18,11 +19,20 @@ const feacthPerson = async () => {
 }
 
 
-// Post
+// // Post
  const myPost = async () =>{
   const myFeatch = await fetch('https://jsonplaceholder.typicode.com/posts')
   return myFeatch.json();
  }
+
+// Todo
+
+const myTodo = async () => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/todos')
+  return res.json();
+}
+
+
 
 function App() {
   function handlear() {
@@ -34,13 +44,18 @@ function App() {
     alert(`Total Counts ${count}`);
   };
 
+  const totdu = myTodo();
   const personas = feacthPerson();
   return (
     <>
       <h2>React Core Concepet Part Tow</h2>
-      <Suspense fallback={<h2>Loding....🤺</h2>}>
+        <Suspense fallback={<p>W8 Loding a Todo....</p>}>
+           <Todoes totdu={totdu}></Todoes>
+        </Suspense>
+
+      {/* <Suspense fallback={<h2>Loding....🤺</h2>}>
         <User featchData={featchData}></User>
-      </Suspense>
+      </Suspense> */}
 
       {/* <Suspense fallback={<h1>I am Weating For my Firened Message...</h1>}>
       <Person personas={personas}></Person> </Suspense> */}

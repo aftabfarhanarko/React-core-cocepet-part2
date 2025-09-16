@@ -1,30 +1,70 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Hooks from "./Hook";
 import Boller from "./Boller";
 import Batsman from "./Batsman";
-// import Boller form "./Boller";
-
-
+import User from "./User";
+import Person from "./Person";
+import Shop from "./Shop";
 import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0);
+// Api React Normal Vabe
+const featchData =  fetch("https://jsonplaceholder.typicode.com/users")
+.then((res) => res.json());
 
+
+const feacthPerson = async () => {
+  const fetac = await fetch("https://jsonplaceholder.typicode.com/users")
+  const thean = await fetac.json();
+  return thean;
+}
+
+
+// Post
+ const myPost = async () =>{
+  const myFeatch = await fetch('https://jsonplaceholder.typicode.com/posts')
+  return myFeatch.json();
+ }
+
+function App() {
   function handlear() {
     alert("Click on The Button");
   }
-  
+
   const clientClick = (num) => {
     let count = num + 10;
     alert(`Total Counts ${count}`);
   };
 
+  const personas = feacthPerson();
+  const myposts = myPost();
   return (
     <>
       <h2>React Core Concepet Part Tow</h2>
-        <Batsman></Batsman>
-         <Boller></Boller>
-        <Hooks></Hooks>
+      <Suspense fallback={<h2>Weating for display card.....</h2>}>
+       <Shop myPost={myPost}></Shop>
+
+      </Suspense>
+      
+       
+
+
+
+
+
+
+
+      <Suspense fallback={<h2>Loding....🤺</h2>}>
+        <User featchData={featchData}></User>
+      </Suspense>
+
+      <Suspense fallback={<h1>I am Weating For my Firened Message...</h1>}>
+      <Person personas={personas}></Person>
+
+      </Suspense>
+
+      <Batsman></Batsman>
+      <Boller></Boller>
+      <Hooks></Hooks>
 
       {/* Add Event Hendlear System 1 */}
       <button onClick={handlear}>Click ME</button>
